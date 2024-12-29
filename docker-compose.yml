@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/qts  # Bind mount local folder to /qts in the container
+    environment:
+      - PROJECT_NAME=qts
+      # - PATH=/qts/venv/bin:$PATH
+    command: tail -f /dev/null  # Keep the container running for development
+
+  # final:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     target: final
+  #   depends_on:
+  #     - dev
